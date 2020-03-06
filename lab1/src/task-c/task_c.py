@@ -11,8 +11,8 @@ Develop an application that performs random searches to the following problems.
 import time
 
 from problems.sudoku_game import SudokuGame
-from cryptarithmetic_game import CryptarithmeticGame
-from geometric_forms import GeometricForms
+from problems.cryptarithmetic_game import CryptarithmeticGame
+from problems.geometric_forms import GeometricForms
 
 
 def show_menu():

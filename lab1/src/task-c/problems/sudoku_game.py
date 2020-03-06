@@ -5,6 +5,7 @@ Created on Tue Mar  3 15:51:14 2020
 
 @author: adrian
 """
+import math
 
 import numpy as np
 
@@ -57,5 +58,15 @@ class SudokuGame:
         if (any(set(row) != numbers for row in board) or
                 any(set(col) != numbers for col in zip(*board))):
             return False
+
+        sub_square_len = int(math.sqrt(len(board)))
+        for row in range(0, len(board), sub_square_len):
+            for col in range(0, len(board), sub_square_len):
+                sub_square = []
+                for i in range(row, row + sub_square_len):
+                    for j in range(col, col + sub_square_len):
+                        sub_square.append(board[i][j])
+                if len(sub_square) != len(set(sub_square)):
+                    return False
 
         return True
