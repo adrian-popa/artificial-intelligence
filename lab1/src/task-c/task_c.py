@@ -8,6 +8,8 @@ Develop an application that performs random searches to the following problems.
 @author: adrian
 """
 
+import time
+
 from problems.sudoku_game import SudokuGame
 from cryptarithmetic_game import CryptarithmeticGame
 from geometric_forms import GeometricForms
@@ -30,26 +32,33 @@ def read_input():
 
 
 def search_solution(problem, attempts, filename):
+    start_time = time.time()
+
     if problem == '1':
+        print('Sudoku game working...')
         solution = SudokuGame(attempts, filename).solve_problem()
         if solution is None:
             on_retry(problem, filename)
-        else:
-            for line in solution:
-                print(line)
+            return
+        for line in solution:
+            print(line)
     if problem == '2':
+        print('Cryptarithmetic game working...')
         solution = CryptarithmeticGame(attempts, filename).solve_problem()
         if solution is None:
             on_retry(problem, filename)
-        else:
-            print(solution)
+            return
+        print(solution)
     if problem == '3':
+        print('Geometric forms working...')
         solution = GeometricForms(attempts).solve_problem()
         if solution is None:
             on_retry(problem, filename)
-        else:
-            for line in solution:
-                print(line)
+            return
+        for line in solution:
+            print(line)
+
+    print("\n--- Task took %s seconds to complete ---" % (time.time() - start_time))
 
 
 def on_retry(problem, filename):
